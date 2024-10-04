@@ -19,6 +19,8 @@ export type worldlyObject = {
   volume: string;
 };
 
+const vowelRegex = /[aeiou]/i;
+
 export const Homepage = () => {
   const [data, setData] = useState<worldlyObject[]>();
   const [leftSideObject, setLeftSideObject] = useState<worldlyObject | null>(
@@ -85,7 +87,7 @@ export const Homepage = () => {
       <section className="mb-10">
         <div className="flex justify-around mx-auto">
           <div className="flex flex-col items-start">
-            <label htmlFor="combobox-left">How many #'s</label>
+            <label htmlFor="combobox-left">How many...</label>
             <Combobox
               data={data || null}
               onValueChange={handleValueChangeLHS}
@@ -96,7 +98,14 @@ export const Homepage = () => {
             <ArrowLeftRight />
           </button>
           <div className="flex flex-col items-start">
-            <label htmlFor="combobox-right">Fit into a(n)</label>
+            <label htmlFor="combobox-right">
+              Fit into{" "}
+              {rightSideObject &&
+              vowelRegex.test(rightSideObject.name.slice(0, 1))
+                ? "an"
+                : "a"}
+              ?
+            </label>
             <Combobox
               data={data || null}
               onValueChange={handleValueChangeRHS}
@@ -106,9 +115,12 @@ export const Homepage = () => {
         </div>
         <p className="mt-5">
           {leftSideObject && rightSideObject
-            ? `${formatNumber(leftIntoRightResult)} ${
-                leftSideObject?.name
-              }'s fit into a(n) ${rightSideObject?.name}`
+            ? `${formatNumber(leftIntoRightResult)} ${leftSideObject?.name}${
+                leftIntoRightResult !== 1 ? "s" : ""
+              } fit${leftIntoRightResult !== 1 ? "" : "s"} into 
+            ${vowelRegex.test(rightSideObject.name.slice(0, 1)) ? "an" : "a"} ${
+                rightSideObject?.name
+              }`
             : ""}
         </p>
       </section>
