@@ -13,6 +13,7 @@ import { formatNumber } from "@/lib/formatters";
 import { ArrowLeftRight } from "lucide-react";
 
 import { Combobox } from "@/components/ui/combobox";
+import { Button } from "@/components/ui/button";
 
 export type worldlyObject = {
   name: string;
@@ -123,9 +124,9 @@ export const Homepage = () => {
               selectedValue={leftSideObject}
             />
           </div>
-          <button className="self-end" onClick={swapValues}>
+          <Button className="self-end" onClick={swapValues}>
             <ArrowLeftRight />
-          </button>
+          </Button>
           <div className="flex flex-col items-start">
             <label htmlFor="combobox-right">
               Fit into{" "}
