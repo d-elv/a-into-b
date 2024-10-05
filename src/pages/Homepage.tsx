@@ -79,10 +79,39 @@ export const Homepage = () => {
     }
   };
 
+  const leftToRightMessageCalculator = () => {
+    // not sure if I like this but it removes the logic from the jsx
+    if (leftSideObject && rightSideObject) {
+      if (
+        leftIntoRightResult !== 1 &&
+        vowelRegex.test(rightSideObject.name.slice(0, 1))
+      ) {
+        return `${formatNumber(leftIntoRightResult)} ${
+          leftSideObject.name
+        }s fit into an ${rightSideObject.name}`;
+      }
+      if (leftIntoRightResult !== 1) {
+        return `${formatNumber(leftIntoRightResult)} ${
+          leftSideObject.name
+        }s fit into a ${rightSideObject.name}`;
+      }
+      if (vowelRegex.test(rightSideObject.name.slice(0, 1))) {
+        return `${formatNumber(leftIntoRightResult)} ${
+          leftSideObject.name
+        } fits into an ${rightSideObject.name}`;
+      } else {
+        return `${formatNumber(leftIntoRightResult)} ${
+          leftSideObject.name
+        } fits into a ${rightSideObject.name}`;
+      }
+    }
+    return "";
+  };
+
   return (
     <div className="">
       <header className="mb-3">
-        <h1 className="text-2xl text-yellow-700">Compare Yourself</h1>
+        <h1 className="text-2xl font-bold text-yellow-700">Compare Yourself</h1>
       </header>
       <section className="mb-10">
         <div className="flex justify-around mx-auto">
@@ -113,15 +142,12 @@ export const Homepage = () => {
             />
           </div>
         </div>
-        <p className="mt-5">
-          {leftSideObject && rightSideObject
-            ? `${formatNumber(leftIntoRightResult)} ${leftSideObject?.name}${
-                leftIntoRightResult !== 1 ? "s" : ""
-              } fit${leftIntoRightResult !== 1 ? "" : "s"} into 
-            ${vowelRegex.test(rightSideObject.name.slice(0, 1)) ? "an" : "a"} ${
-                rightSideObject?.name
-              }`
-            : ""}
+        <p
+          className={`mt-5 text-xl rounded-xl ${
+            leftSideObject && rightSideObject ? "bg-yellow-500" : ""
+          } w-fit mx-auto pl-3 pr-3 pt-1 pb-1`}
+        >
+          {leftToRightMessageCalculator()}
         </p>
       </section>
       <section className="mt-2">
