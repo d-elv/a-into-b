@@ -45,13 +45,15 @@ export function Combobox({
           variant="outline"
           role="combobox"
           aria-expanded={open}
-          className="w-[200px] justify-between"
+          className="w-[170px] sm:w-[200px] pl-2 pr-1 justify-between"
         >
-          {selectedValue ? selectedValue.name : "Select thing..."}
-          <ChevronsUpDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
+          <p className="text-xs sm:text-base">
+            {selectedValue ? selectedValue.name : "Select thing..."}
+          </p>
+          <ChevronsUpDown className="ml-1 sm:ml-2 h-4 w-4 shrink-0 opacity-50" />
         </Button>
       </PopoverTrigger>
-      <PopoverContent className="w-[200px] p-0">
+      <PopoverContent className="w-[170px] sm:w-[200px] p-0">
         <Command>
           <CommandInput placeholder="Search things..." />
           <CommandList>
@@ -71,7 +73,7 @@ export function Combobox({
                         : "opacity-0"
                     )}
                   />
-                  {object.name}
+                  <p className="text-xs sm:text-base">{object.name}</p>
                 </CommandItem>
               ))}
             </CommandGroup>

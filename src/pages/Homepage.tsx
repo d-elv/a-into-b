@@ -115,7 +115,7 @@ export const Homepage = () => {
         <h1 className="text-2xl font-bold text-yellow-700">Compare Yourself</h1>
       </header>
       <section className="mb-10">
-        <div className="flex justify-around mx-auto">
+        <div className="flex justify-center sm:justify-around mx-auto">
           <div className="flex flex-col items-start">
             <label htmlFor="combobox-left">How many...</label>
             <Combobox
@@ -124,8 +124,11 @@ export const Homepage = () => {
               selectedValue={leftSideObject}
             />
           </div>
-          <Button className="self-end" onClick={swapValues}>
-            <ArrowLeftRight />
+          <Button
+            className="self-end ml-1.5 mr-1.5 p-1 pt-0 pb-0 h-7 sm:ml-0 sm:mr-0 sm:p-2.5 sm:h-8"
+            onClick={swapValues}
+          >
+            <ArrowLeftRight className="sm:size-6 h-5" />
           </Button>
           <div className="flex flex-col items-start">
             <label htmlFor="combobox-right">
@@ -152,7 +155,7 @@ export const Homepage = () => {
         </p>
       </section>
       <section className="mt-2">
-        <Table className="w-96 mx-auto">
+        <Table className="w-80 sm:w-96 mx-auto">
           <TableCaption>Data to compare</TableCaption>
           <TableHeader>
             <TableRow>
